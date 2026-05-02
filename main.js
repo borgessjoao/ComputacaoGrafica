@@ -1,5 +1,6 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
 import { criarBanco } from './objects/banco.js';
+import { CriarFlocoDeNeve } from './objects/flocoDeNeve.js';
 
 // Cena, câmera, renderer
 const scene = new THREE.Scene();
@@ -22,8 +23,14 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 // Seu objeto
 criarBanco(scene);
 
+const floco = new CriarFlocoDeNeve(scene);
+
 // Loop de renderização
 function animate() {
+  //rotacao do floco
+  floco.rotation.y += 0.004;
+  floco.rotation.z += 0.004;
+  
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
