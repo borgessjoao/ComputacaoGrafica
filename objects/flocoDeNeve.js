@@ -1,5 +1,19 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
 
+// Quantos flocos aparecem na cena ao mesmo tempo
+const QUANTIDADE = 40;
+ 
+// Área horizontal em que os flocos aparecem (em cm, igual ao resto da cena)
+const AREA = 800;
+ 
+// Altura em que os flocos nascem e somem
+const Y_INICIO =  400; // topo — nasce aqui
+const Y_FIM    = -20;  // chão  — some aqui
+
+function posAleatoria() {
+  return (Math.random() - 0.5) * AREA;
+}
+
 export function CriarFlocoDeNeve( scene ) {
 
     const material = new THREE.MeshBasicMaterial( { 
@@ -53,8 +67,52 @@ floco.position.set(0, 50, 0);
 floco.scale.set(2000, 2000, 2000); // Pra visualizacao
 scene.add(floco);
 
-return floco;
+// cria mais (QUANTIDADE - 1) flocos clonando o original
+// O floco original acima já conta como 1, então criamos os restantes clonando.
+const todosFlocos = [floco];
 
+for (let i = 1; i < QUANTIDADE; i++) {
+    const clone = floco.clone();
+    clone.position.set(
+        posAleatoria(),
+        Math.random() * (Y_INICIO - Y_FIM) + Y_FIM, // altura aleatória inicial
+        posAleatoria()
+    );
+    // velocidade e rotação individuais guardadas no userData de cada clone
+    clone.userData.velocidadeQueda = 0.3 + Math.random() * 0.5;
+    clone.userData.velocidadeGiroY = 0.002 + Math.random() * 0.006;
+    clone.userData.velocidadeGiroZ = 0.002 + Math.random() * 0.004;
+    scene.add(clone);
+    todosFlocos.push(clone);
 }
 
+// O floco original também recebe seus metadados
+floco.userData.velocidadeQueda = 0.3 + Math.random() * 0.5;
+floco.userData.velocidadeGiroY = 0.002 + Math.random() * 0.006;
+floco.userData.velocidadeGiroZ = 0.002 + Math.random() * 0.004;
 
+// Retorna objeto com .update() para chamar no animate() do main.js
+// e também expõe o floco original em .rotation
+const resultado = {
+    rotation: floco.rotation,
+    update() {
+        for (const f of todosFlocos) {
+            f.position.y -= f.userData.velocidadeQueda;
+            f.rotation.y += f.userData.velocidadeGiroY;
+            f.rotation.z += f.userData.velocidadeGiroZ;
+
+            // Quando chega embaixo, renasce no topo em posição aleatória
+            if (f.position.y < Y_FIM) {
+                f.position.set(
+                    posAleatoria(),
+                    Y_INICIO,
+                    posAleatoria()
+                );
+            }
+        }
+    }
+};
+
+return resultado;
+
+}

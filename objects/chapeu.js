@@ -27,6 +27,7 @@ const fragmentShader = `
   uniform vec3 uColor;
   uniform vec3 uLightPos;
   uniform vec3 uAmbient;
+  uniform float uDiffuse;
 
   varying vec3 vNormal;
   varying vec3 vWorldPos;
@@ -34,21 +35,23 @@ const fragmentShader = `
   void main() {
     vec3 lightDir = normalize(uLightPos - vWorldPos);
     float diff    = max(dot(vNormal, lightDir), 0.0);
-    vec3  color   = uAmbient * uColor + diff * uColor;
+    vec3 color = uAmbient * uColor + diff * uDiffuse * uColor;
     gl_FragColor  = vec4(color, 1.0);
   }
 `;
 
 // CORES PRÉ-DEFINIDAS PARA O CHAPÉU
 const CORES_CHAPEU = [
-  { nome: 'Palha',         hex: 0xd4b896 },
-  { nome: 'Bege escuro',   hex: 0xb89060 },
-  { nome: 'Marrom',        hex: 0x7a4f2e },
-  { nome: 'Preto',         hex: 0x1a1a1a },
-  { nome: 'Branco',        hex: 0xf0ece4 },
-  { nome: 'Vermelho',      hex: 0xc0392b },
-  { nome: 'Azul marinho',  hex: 0x1a3a5c },
-  { nome: 'Verde militar', hex: 0x4a6741 },
+  { nome: 'Palha',        hex: 0xd4b896 },
+  { nome: 'Branco',       hex: 0xf0ece4 },
+  { nome: 'Preto',        hex: 0x1a1a1a },
+  { nome: 'Vermelho',     hex: 0xff2020 },
+  { nome: 'Laranja',      hex: 0xff7700 },
+  { nome: 'Amarelo',      hex: 0xffdd00 },
+  { nome: 'Verde claro',  hex: 0x44dd44 },
+  { nome: 'Azul claro',   hex: 0x22bbff },
+  { nome: 'Roxo',         hex: 0xaa44ff },
+  { nome: 'Rosa',         hex: 0xff44aa },
 ];
 
 // SHADER PRÓPRIO (RawShaderMaterial)
@@ -62,6 +65,7 @@ function criarMaterial(corHex) {
       uColor:    { value: new THREE.Color(corHex) },
       uLightPos: { value: new THREE.Vector3(300, 500, 300) },
       uAmbient:  { value: new THREE.Vector3(0.8, 0.8, 0.8) },
+      uDiffuse:  { value: 0.8 }, 
     },
     side: THREE.DoubleSide,
   });

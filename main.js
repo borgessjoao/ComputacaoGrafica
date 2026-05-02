@@ -49,9 +49,7 @@ const floco = new CriarFlocoDeNeve(scene);
 
 // Loop de renderização
 function animate() {
-  //rotacao do floco
-  floco.rotation.y += 0.004;
-  floco.rotation.z += 0.004;
+  floco.update(); 
   
   requestAnimationFrame(animate);
   renderer.render(scene, cameraAtiva);
