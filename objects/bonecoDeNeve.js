@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
+import * as THREE from 'three';
 
 export function criarBoneco(scene){
 
@@ -7,7 +7,10 @@ export function criarBoneco(scene){
     const braco1_grupo = new THREE.Group();
     const braco2_grupo = new THREE.Group();
 
-    const neve = new THREE.MeshPhongMaterial({color: 0xcedfdf});
+    // textura do boneco
+    const texturaNeve = new THREE.TextureLoader().load(`textures/Snow010A_1K-JPG_Color.jpg`);
+    const neve = new THREE.MeshLambertMaterial({ map: texturaNeve });
+
     const madeira = new THREE.MeshPhongMaterial({color: 0x60360e});
     const cenoura = new THREE.MeshPhongMaterial({color: 0xd47217});
     const pedra = new THREE.MeshPhongMaterial({color: 0x393535});

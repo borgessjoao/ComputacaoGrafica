@@ -1,10 +1,17 @@
 // banco.js
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
+import * as THREE from 'three';
+
 
 export function criarBanco(scene) {
   const grupoBanco = new THREE.Group();
 
-  const madeira = new THREE.MeshLambertMaterial({ color: 0x8B4513 });
+  const loader = new THREE.TextureLoader();
+  const texturaMadeira = loader.load('./textures/Wood066_2K-PNG_Color.png');
+  texturaMadeira.wrapS = THREE.RepeatWrapping;
+  texturaMadeira.wrapT = THREE.RepeatWrapping;
+
+  
+  const madeira = new THREE.MeshLambertMaterial({ map: texturaMadeira });
   const metal   = new THREE.MeshLambertMaterial({ color: 0x555555 });
 
   // Assento
