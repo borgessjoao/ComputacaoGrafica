@@ -44,7 +44,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 
 // Seu objeto
 criarBanco(scene);
-criarChapeu(scene, { x: 150, y: 72, z: 200 });
+criarChapeu(scene, { x: 0, y: 153, z: 0 });
 const floco = new CriarFlocoDeNeve(scene);
 const frederico = criarBoneco(scene);
 scene.add(frederico);

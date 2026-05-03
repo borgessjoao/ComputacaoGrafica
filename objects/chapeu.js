@@ -202,6 +202,7 @@ export function criarChapeu(scene, posicao = { x: 0, y: 0, z: 0 }) {
   grupo.add(faixa);
 
   // Posição do grupo na cena
+  grupo.scale.set(2, 2, 2);
   grupo.position.set(posicao.x, posicao.y, posicao.z);
   scene.add(grupo);
 
