@@ -1,18 +1,24 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
+import * as THREE from 'three';
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import { criarBanco } from './objects/banco.js';
 import { CriarFlocoDeNeve } from './objects/flocoDeNeve.js';
 import { criarChapeu } from './objects/chapeu.js';
 import { criarBoneco } from './objects/bonecoDeNeve.js';
 
+// Textura de neve
+const loader = new THREE.TextureLoader();
+const texturaNeve = loader.load(`textures/Snow014_2K-PNG_AmbientOcclusion.png`);
+texturaNeve.wrapS = THREE.RepeatWrapping;
+texturaNeve.wrapT = THREE.RepeatWrapping;
+
 // Cena, câmera, renderer
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x9ad0f0); //só mudei pra enxergar o boneco melhor, depois mudamos
-const chaoGeo = new THREE.PlaneGeometry(2000, 2000);
-const chaoMat = new THREE.MeshStandardMaterial({ color: 0xb0b8c1 });
-const chao = new THREE.Mesh(chaoGeo, chaoMat);
-chao.rotation.x = -Math.PI / 2; // deita o plano
-chao.position.y = 0;
-scene.add(chao);
+const rgbeLoader = new RGBELoader();
+rgbeLoader.load('./textures/passendorf_snow_4k.hdr', (texture) => {
+  texture.mapping = THREE.EquirectangularReflectionMapping;
+  scene.background = texture;
+  scene.environment = texture; // faz o HDRI iluminar os objetos também
+});
 
 const camera1 = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 10000);
 camera1.position.set(300, 200, 400);
@@ -22,13 +28,19 @@ const camera2 = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 1
 camera2.position.set(0, 100, 500);
 camera2.lookAt(0, 50, 0);
 
-// Câmera ativa no momento (começa com a 1)
+// Camera 3 - de costas, atrás dos objetos  
+const camera3 = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 10000);
+camera3.position.set(100, 150, -500); // atrás da cena
+camera3.lookAt(100, 50, 0); // aponta pro meio entre banco e boneco
+
 let cameraAtiva = camera1;
 
-//permite escolher a camera
+// Alterna entre as 3 em sequência
 window.addEventListener('keydown', (e) => {
   if (e.key === 'c' || e.key === 'C') {
-    cameraAtiva = (cameraAtiva === camera1) ? camera2 : camera1;
+    if (cameraAtiva === camera1) cameraAtiva = camera2;
+    else if (cameraAtiva === camera2) cameraAtiva = camera3;
+    else cameraAtiva = camera1;
   }
 });
 
@@ -37,14 +49,14 @@ renderer.setSize(innerWidth, innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Luz
-const luz = new THREE.DirectionalLight(0xffffff, 3);
+const luz = new THREE.DirectionalLight(0xffffff, 0.8); 
 luz.position.set(5, 10, 5);
 scene.add(luz);
-scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+scene.add(new THREE.AmbientLight(0xffffff, 2));
 
-// Seu objeto
+// Objetos
 criarBanco(scene);
-criarChapeu(scene, { x: 0, y: 153, z: 0 });
+criarChapeu(scene, { x: 0, y: 155, z: 0 });
 const floco = new CriarFlocoDeNeve(scene);
 const frederico = criarBoneco(scene);
 scene.add(frederico);
@@ -64,5 +76,7 @@ window.addEventListener('resize', () => {
   camera1.updateProjectionMatrix();
   camera2.aspect = innerWidth / innerHeight;
   camera2.updateProjectionMatrix();
+  camera3.aspect = innerWidth / innerHeight;
+  camera3.updateProjectionMatrix();
   renderer.setSize(innerWidth, innerHeight);
 });

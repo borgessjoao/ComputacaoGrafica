@@ -1,7 +1,7 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
+import * as THREE from 'three';
 
 // Quantos flocos aparecem na cena ao mesmo tempo
-const QUANTIDADE = 40;
+const QUANTIDADE = 200;
  
 // Área horizontal em que os flocos aparecem (em cm, igual ao resto da cena)
 const AREA = 800;
