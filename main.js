@@ -14,11 +14,11 @@ chao.rotation.x = -Math.PI / 2; // deita o plano
 chao.position.y = 0;
 scene.add(chao);
 
-const camera1 = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.1, 10000);//era 75 de zoom
+const camera1 = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 10000);//era 75 de zoom
 camera1.position.set(300, 200, 400);
 camera1.lookAt(0, 50, 0);
 
-const camera2 = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.1, 10000);
+const camera2 = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 10000);
 camera2.position.set(0, 100, 500);
 camera2.lookAt(0, 50, 0);
 
