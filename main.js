@@ -4,6 +4,7 @@ import { criarBanco } from './objects/banco.js';
 import { CriarFlocoDeNeve } from './objects/flocoDeNeve.js';
 import { criarChapeu } from './objects/chapeu.js';
 import { criarBoneco } from './objects/bonecoDeNeve.js';
+import { criarCoelho } from './objects/coelho.js';
 
 // Textura de neve
 const loader = new THREE.TextureLoader();
@@ -57,8 +58,10 @@ scene.add(new THREE.AmbientLight(0xffffff, 2));
 // Objetos
 criarBanco(scene);
 criarChapeu(scene, { x: 0, y: 155, z: 0 });
+const coelho = criarCoelho(scene);
 const floco = new CriarFlocoDeNeve(scene);
 const frederico = criarBoneco(scene);
+scene.add(coelho);
 scene.add(frederico);
 
 // Loop de renderização
