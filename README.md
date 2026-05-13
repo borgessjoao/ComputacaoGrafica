@@ -41,6 +41,8 @@ ComputacaoGrafica/
 
 - O chapéu utiliza shader próprio implementado via RawShaderMaterial, com vertex shader e fragment shader escritos em GLSL. O fragment shader usa iluminação difusa com um uniform `uColor` que permite alterar a cor do chapéu em tempo real, sem recriar o material.
 
+- O coelho possui animação de movimentação simples, incluindo o balançar das orelhas o farejar contínuo do nariz.
+
 - Na `main.js` foi criada a cena que utiliza uma HDRI - High Dynamic Range Image - que, com o `Three.js`, ela é responsável por definir o background e a iluminação, trazendo um aspecto mais realista.
 
 - Ainda na `main.js` foram inseridos os 4 objetos, criadas as câmeras e foi feita a animação dos flocos de neve.

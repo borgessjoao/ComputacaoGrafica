@@ -59,13 +59,14 @@ export function criarCoelho(scene) {
     grupoCoelho.add(rabo);
 
     grupoCoelho.position.set(200, 50, 0);
-    grupoCoelho.scale.set(2, 2, 2);
+    //grupoCoelho.scale.set(2, 2, 2);
     grupoCoelho.rotation.y = 45 * (Math.PI / 180);
     
-
+    // função de animação do coelho
     grupoCoelho.update = function(tempo) {
     // Movimentacao suave das orelhas
     const oscilacaoZ = Math.sin(tempo * 3) * 0.05; 
+    const oscilacaoNariz = Math.sin(tempo * 5) * 0.05;
     const oscilacaoY = Math.sin(tempo * 3) * 0.1;
 
     // Aplica as oscilações
@@ -74,6 +75,8 @@ export function criarCoelho(scene) {
     
     orelhaDir.rotation.z = - 0.1 - oscilacaoZ;
     orelhaDir.position.y = 37 - oscilacaoY * 7;
+
+    nariz.position.y = 24 - oscilacaoNariz * 7;
     };
 
     scene.add(grupoCoelho);
