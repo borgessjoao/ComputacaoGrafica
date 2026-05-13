@@ -67,6 +67,7 @@ scene.add(frederico);
 // Loop de renderização
 function animate() {
   floco.update(); 
+  coelho.update(performance.now() / 1000); 
   
   requestAnimationFrame(animate);
   renderer.render(scene, cameraAtiva);

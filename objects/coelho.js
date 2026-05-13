@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { or } from 'three/tsl';
 
 export function criarCoelho(scene) {
     const grupoCoelho = new THREE.Group();
@@ -58,8 +59,23 @@ export function criarCoelho(scene) {
     grupoCoelho.add(rabo);
 
     grupoCoelho.position.set(200, 50, 0);
-    //grupoCoelho.scale.set(2, 2, 2);
+    grupoCoelho.scale.set(2, 2, 2);
     grupoCoelho.rotation.y = 45 * (Math.PI / 180);
+    
+
+    grupoCoelho.update = function(tempo) {
+    // Movimentacao suave das orelhas
+    const oscilacaoZ = Math.sin(tempo * 3) * 0.05; 
+    const oscilacaoY = Math.sin(tempo * 3) * 0.1;
+
+    // Aplica as oscilações
+    orelhaEsq.rotation.z = 0.1 + oscilacaoZ;
+    orelhaEsq.position.y = 37 - oscilacaoY * 7; 
+    
+    orelhaDir.rotation.z = - 0.1 - oscilacaoZ;
+    orelhaDir.position.y = 37 - oscilacaoY * 7;
+    };
+
     scene.add(grupoCoelho);
 
     return grupoCoelho;
