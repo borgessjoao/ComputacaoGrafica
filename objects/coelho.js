@@ -65,7 +65,7 @@ export function criarCoelho(scene) {
     // função de animação do coelho
     grupoCoelho.update = function(tempo) {
     // Movimentacao suave das orelhas
-    const oscilacaoZ = Math.sin(tempo * 3) * 0.05; 
+    const oscilacaoZ = Math.sin(tempo * 3) * 0.08; 
     const oscilacaoNariz = Math.sin(tempo * 5) * 0.05;
     const oscilacaoY = Math.sin(tempo * 3) * 0.1;
 
