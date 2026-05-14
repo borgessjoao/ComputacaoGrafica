@@ -6,6 +6,7 @@ import { criarChapeu } from './objects/chapeu.js';
 import { criarBoneco } from './objects/bonecoDeNeve.js';
 import { criarCoelho } from './objects/coelho.js';
 import { criarBalanco } from './objects/balanco.js';
+import { criarCachecol } from './objects/cachecol.js';
 
 // Textura de neve
 const loader = new THREE.TextureLoader();
@@ -66,6 +67,8 @@ scene.add(coelho);
 scene.add(frederico);
 const balanco = criarBalanco(scene);
 balanco.rotation.y = Math.PI / 3;
+const cachecol = criarCachecol(scene);
+scene.add(cachecol);
 
 
 // Loop de renderização
