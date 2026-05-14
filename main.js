@@ -5,6 +5,7 @@ import { CriarFlocoDeNeve } from './objects/flocoDeNeve.js';
 import { criarChapeu } from './objects/chapeu.js';
 import { criarBoneco } from './objects/bonecoDeNeve.js';
 import { criarCoelho } from './objects/coelho.js';
+import { criarBalanco } from './objects/balanco.js';
 
 // Textura de neve
 const loader = new THREE.TextureLoader();
@@ -63,6 +64,9 @@ const floco = new CriarFlocoDeNeve(scene);
 const frederico = criarBoneco(scene);
 scene.add(coelho);
 scene.add(frederico);
+const balanco = criarBalanco(scene);
+balanco.rotation.y = Math.PI / 3;
+
 
 // Loop de renderização
 function animate() {
