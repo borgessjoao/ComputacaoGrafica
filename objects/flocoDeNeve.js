@@ -18,8 +18,6 @@ export function CriarFlocoDeNeve( scene ) {
 
     const material = new THREE.MeshBasicMaterial( { 
     color: 0xDDEEFF,
-    roughness: 0.2,
-    metalness: 0.2,
     opacity: 0.5,
 } );
 

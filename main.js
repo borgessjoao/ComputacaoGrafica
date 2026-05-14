@@ -10,9 +10,6 @@ import { criarCachecol } from './objects/cachecol.js';
 
 // Textura de neve
 const loader = new THREE.TextureLoader();
-const texturaNeve = loader.load(`textures/Snow014_2K-PNG_AmbientOcclusion.png`);
-texturaNeve.wrapS = THREE.RepeatWrapping;
-texturaNeve.wrapT = THREE.RepeatWrapping;
 
 // Cena, câmera, renderer
 const scene = new THREE.Scene();

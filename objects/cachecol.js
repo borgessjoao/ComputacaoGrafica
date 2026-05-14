@@ -18,8 +18,8 @@ export function criarCachecol(scene){
     texturaCilindro.repeat.set(2, 15);
     texturaPonta.repeat.set(4, 2);
 
-    const tricoCilindro = new THREE.MeshLambertMaterial({map: texturaCilindro, roughness: 1.0});
-    const tricoPonta = new THREE.MeshLambertMaterial({map: texturaPonta, roughness: 1.0});
+    const tricoCilindro = new THREE.MeshLambertMaterial({map: texturaCilindro});
+    const tricoPonta = new THREE.MeshLambertMaterial({map: texturaPonta});
 
     //formato cilindrico
     const cilindro = new THREE.CylinderGeometry(34, 34, 15, 64);
