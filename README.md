@@ -27,9 +27,10 @@ ComputacaoGrafica/
 |   ├── coelho.js
 │   └── flocoDeNeve.js
 ├── textures/
-    ├── passendorf_snow_4k.hdr
+    ├── Fabric016_1K-PNG_Color.png
     ├── Snow010A_1K-JPG_Color.jpg
-    └── Wood066_2K-PNG_Color.png
+    ├── Wood066_2K-PNG_Color.png
+    └── passendorf_snow_4k.hdr
 ```
 
 ## Descrição do projeto
@@ -42,9 +43,11 @@ ComputacaoGrafica/
 
 - O banco e o boneco de neve foram criados com textura de madeira e neve, respectivamente.
 
+- O cachecol do boneco de neve também possui textura, de lã.
+
 - O floco de neve foi um dos objetos com movimento, caindo do "céu ao chão" por toda a cena.
 
-- O coelho possui animação de movimentação simples, incluindo o balançar das orelhas o farejar contínuo do nariz.
+- O coelho possui animação de movimentação simples, incluindo o balançar das orelhas e o farejar contínuo do nariz.
 
 - O chapéu utiliza shader próprio implementado via RawShaderMaterial, com vertex shader e fragment shader escritos em GLSL. O fragment shader usa iluminação difusa com um uniform `uColor` que permite alterar a cor do chapéu em tempo real, sem recriar o material.
 
