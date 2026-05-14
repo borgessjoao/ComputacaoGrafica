@@ -1,6 +1,6 @@
 # PP1 Computação Gráfica
 
-Repositório para o trabalho da matéria de Processamento Gráfico, na área de CG, proposta pelo professor Mário Lizier para a turma de 2026/1.
+Repositório para o trabalho da matéria de Processamento Gráfico, na área de Computação Gráfica, proposta pelo professor Mário Lizier para a turma de 2026/1.
 
 ## Grupo:
 Aline Riemer - 832869
@@ -19,9 +19,12 @@ ComputacaoGrafica/
 ├── README.md
 ├── index.html
 ├── objects/
+|   ├── balanco.js
 |   ├── banco.js
 |   ├── bonecoDeNeve.js
+|   ├── cachecol.js
 |   ├── chapeu.js
+|   ├── coelho.js
 │   └── flocoDeNeve.js
 ├── textures/
     ├── passendorf_snow_4k.hdr
@@ -33,19 +36,21 @@ ComputacaoGrafica/
 
 - Cada integrante do grupo foi responsável por implementar 1 objeto 3D e posicioná-lo na cena implementada no arquivo principal `main.js`.
 
+- Além dos 4 objetos necessários, implementamos mais 3 (para obter os pontos extras).
+
 - O trabalho foi feito com WebGL, JavaScript e a biblioteca Three.js. Para visualizar o resultado utilizamos o arquivo `index.html` no navegador (Pelo VS Code é possível visualizar com o uso da extensão Live Server sobre o arquivo html).
 
 - O banco e o boneco de neve foram criados com textura de madeira e neve, respectivamente.
 
-- O floco de neve foi o objeto com movimento, caindo do "céu ao chão" por toda a cena.
-
-- O chapéu utiliza shader próprio implementado via RawShaderMaterial, com vertex shader e fragment shader escritos em GLSL. O fragment shader usa iluminação difusa com um uniform `uColor` que permite alterar a cor do chapéu em tempo real, sem recriar o material.
+- O floco de neve foi um dos objetos com movimento, caindo do "céu ao chão" por toda a cena.
 
 - O coelho possui animação de movimentação simples, incluindo o balançar das orelhas o farejar contínuo do nariz.
 
+- O chapéu utiliza shader próprio implementado via RawShaderMaterial, com vertex shader e fragment shader escritos em GLSL. O fragment shader usa iluminação difusa com um uniform `uColor` que permite alterar a cor do chapéu em tempo real, sem recriar o material.
+
 - Na `main.js` foi criada a cena que utiliza uma HDRI - High Dynamic Range Image - que, com o `Three.js`, ela é responsável por definir o background e a iluminação, trazendo um aspecto mais realista.
 
-- Ainda na `main.js` foram inseridos os 4 objetos, criadas as câmeras e foi feita a animação dos flocos de neve.
+- Ainda na `main.js` foram inseridos os 7 objetos, criadas as câmeras e foi feita a animação dos flocos de neve e do coelho.
 
 ## Câmeras
 - **Câmera 1** — visão diagonal lateral (padrão)
