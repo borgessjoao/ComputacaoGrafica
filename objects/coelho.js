@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { or } from 'three/tsl';
+//import { or } from 'three/tsl';
 
 export function criarCoelho(scene) {
     const grupoCoelho = new THREE.Group();
